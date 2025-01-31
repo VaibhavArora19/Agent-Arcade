@@ -1,3 +1,9 @@
+import DashboardHeading from "@/components/Dashboard/dashboard-heading";
+
 export default function Home() {
-  return <div></div>;
+  return (
+    <div>
+      <DashboardHeading />
+    </div>
+  );
 }
