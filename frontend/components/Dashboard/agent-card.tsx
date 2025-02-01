@@ -1,10 +1,12 @@
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import Image from "next/image";
 import { GoPeople } from "react-icons/go";
+import { Button } from "../ui/button";
+import { MdDeleteOutline } from "react-icons/md";
 
 const AgentCard = () => {
   return (
-    <div className="w-[30rem]">
+    <div className="w-[32rem]">
       <Card>
         <CardContent className="pt-4">
           <div className="flex gap-4">
@@ -27,8 +29,14 @@ const AgentCard = () => {
             </div>
           </div>
         </CardContent>
-        <CardFooter>
-          <p>Card Footer</p>
+        <p className="bg-secondary p-1 text-sm rounded-2xl block w-[7.5rem] ml-6 text-center">0x3D6A...66A5</p>
+        <CardFooter className="mt-4 border-t-2 border-gray-900 pt-4 gap-4">
+          <Button variant={"outline"} className="w-[90%]">
+            Chat
+          </Button>
+          <Button variant={"outline"}>
+            <MdDeleteOutline className="text-red-700" size={20} />
+          </Button>
         </CardFooter>
       </Card>
     </div>
