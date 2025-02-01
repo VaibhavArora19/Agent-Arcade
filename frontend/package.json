@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@radix-ui/react-slot": "^1.1.1",
+    "@radix-ui/react-tabs": "^1.1.2",
     "@reown/appkit": "^1.6.5",
     "@reown/appkit-adapter-ethers": "^1.6.5",
     "class-variance-authority": "^0.7.1",

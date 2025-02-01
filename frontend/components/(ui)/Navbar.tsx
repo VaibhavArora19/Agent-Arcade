@@ -2,7 +2,7 @@
 
 const Navbar = () => {
   return (
-    <div className="flex justify-between mx-8 my-4">
+    <div className="flex justify-between mx-8 my-4 border-b-2 border-gray-900 pb-4">
       <div className="flex gap-8">
         <h1 className="text-2xl font-bold cursor-pointer">Agentic ETH</h1>
         <div className="flex gap-4">

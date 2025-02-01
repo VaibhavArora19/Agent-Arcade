@@ -32,7 +32,9 @@ const AgentSummary = () => {
                   <p className="text-4xl font-semibold">{item.value}</p>
                   <Button>{item.change}</Button>
                 </div>
-                <div>{item.icon}</div>
+                <div>
+                  <Button variant={"secondary"}>{item.icon}</Button>
+                </div>
               </CardContent>
             </Card>
           );
