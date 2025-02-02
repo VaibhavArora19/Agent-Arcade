@@ -4,7 +4,7 @@ import AgentCards from "./agent-cards";
 const AgentDetails = () => {
   return (
     <div className="pl-8 my-8">
-      <Tabs defaultValue="account">
+      <Tabs defaultValue="social">
         <TabsList>
           <TabsTrigger value="social">Social Agents</TabsTrigger>
           <TabsTrigger value="defi">DeFi Agents</TabsTrigger>
