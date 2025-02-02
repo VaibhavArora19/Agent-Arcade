@@ -2,12 +2,9 @@ import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import {
   AgentKit,
-  CdpWalletProvider,
   wethActionProvider,
   walletActionProvider,
   erc20ActionProvider,
-  cdpApiActionProvider,
-  cdpWalletActionProvider,
   pythActionProvider,
   ViemWalletProvider,
 } from '@coinbase/agentkit';
@@ -17,8 +14,6 @@ import { HumanMessage } from '@langchain/core/messages';
 import { MemorySaver } from '@langchain/langgraph';
 import { createReactAgent } from '@langchain/langgraph/prebuilt';
 import { ChatOpenAI } from '@langchain/openai';
-import * as fs from 'fs';
-import * as readline from 'readline';
 import { privateKeyToAccount } from 'viem/accounts';
 import { createWalletClient, http } from 'viem';
 import { baseSepolia } from 'viem/chains';
@@ -98,20 +93,10 @@ export class AgentKitService {
     }
   }
 
-  async runChatMode(agent: any, config: any) {
-    console.log("Starting chat mode... Type 'exit' to end.");
-
-    const rl = readline.createInterface({
-      input: process.stdin,
-      output: process.stdout,
-    });
-
-    const question = (prompt: string): Promise<string> =>
-      new Promise((resolve) => rl.question(prompt, resolve));
+  async runChatMode(agent: any, config: any, userInput: string) {
+    console.log('Processing prompt in agent kit ....');
 
     try {
-      const userInput = await question('\nPrompt: ');
-
       const stream = await agent.stream(
         { messages: [new HumanMessage(userInput)] },
         config,
@@ -120,8 +105,11 @@ export class AgentKitService {
       for await (const chunk of stream) {
         if ('agent' in chunk) {
           console.log(chunk.agent.messages[0].content);
+          return chunk.agent.messages[0].content;
         } else if ('tools' in chunk) {
           console.log(chunk.tools.messages[0].content);
+
+          return chunk.tools.messages[0].content;
         }
         console.log('-------------------');
       }
@@ -130,16 +118,16 @@ export class AgentKitService {
         console.error('Error:', error.message);
       }
       process.exit(1);
-    } finally {
-      rl.close();
     }
   }
 
-  async main() {
+  async runCoinbaseAgent(userInput: string) {
     try {
       const { agent, config } = await this.initializeAgent();
 
-      await this.runChatMode(agent, config);
+      const res = await this.runChatMode(agent, config, userInput);
+
+      return res;
     } catch (error) {
       if (error instanceof Error) {
         console.error('Error:', error.message);
