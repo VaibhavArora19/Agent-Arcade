@@ -6,10 +6,20 @@ import { CommunicateDto } from './dto/communicate.dto';
 export class CommunicateController {
   constructor(private readonly communicateService: CommunicateService) {}
 
-  @Post()
+  @Post('coinbase')
   async runCoinbaseAgent(@Body() communticateDto: CommunicateDto) {
     const response =
       await this.communicateService.runCoinbaseAgent(communticateDto);
+
+    return {
+      response,
+    };
+  }
+
+  @Post('warden')
+  async runWardenAgent(@Body() communticateDto: CommunicateDto) {
+    const response =
+      await this.communicateService.runWardenAgent(communticateDto);
 
     return {
       response,
