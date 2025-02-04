@@ -27,7 +27,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased w-[70%] m-auto`}>
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased  m-auto`}>
         <ThemeProvider attribute="class" defaultTheme="dark">
           <AppKit>
             <Navbar />

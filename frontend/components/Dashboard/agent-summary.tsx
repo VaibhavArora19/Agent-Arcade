@@ -19,7 +19,7 @@ const DUMMY_DATA = [
 
 const AgentSummary = () => {
   return (
-    <div className="px-8">
+    <div className="px-16">
       <div className=" flex gap-8">
         {DUMMY_DATA.map((item) => {
           return (

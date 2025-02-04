@@ -22,6 +22,7 @@
   "dependencies": {
     "@coinbase/agentkit": "^0.1.0",
     "@coinbase/agentkit-langchain": "^0.1.0",
+    "@covalenthq/ai-agent-sdk": "^0.2.2",
     "@langchain/core": "^0.3.33",
     "@langchain/langgraph": "^0.2.44",
     "@langchain/openai": "^0.3.17",
