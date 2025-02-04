@@ -7,6 +7,30 @@ import { IoMdArrowRoundBack } from "react-icons/io";
 import SocialAgentForm from "./social-agent-form";
 import AICompanionForm from "./ai-companion-form";
 import GameAgentForm from "./game-agent-form";
+import { TerminalCard } from "../terminal/terminal-card";
+
+const TABS = [
+  {
+    name: "social",
+    label: "Social Agent",
+    component: <SocialAgentForm />,
+  },
+  {
+    name: "defi",
+    label: "DeFi Agent",
+    component: <DefiAgentForm />,
+  },
+  {
+    name: "companion",
+    label: "AI companion",
+    component: <AICompanionForm />,
+  },
+  {
+    name: "game",
+    label: "Game Agent",
+    component: <GameAgentForm />,
+  },
+];
 
 const CreateAgentForm = () => {
   return (
@@ -20,31 +44,24 @@ const CreateAgentForm = () => {
       </div>
       <Tabs defaultValue="social" className="mt-8">
         <TabsList>
-          <TabsTrigger value="social" className="w-[15rem]">
-            Social Agent
-          </TabsTrigger>
-          <TabsTrigger value="defi" className="w-[15rem]">
-            Defi Agent
-          </TabsTrigger>
-          <TabsTrigger value="companion" className="w-[15rem]">
-            AI companion
-          </TabsTrigger>
-          <TabsTrigger value="game" className="w-[15rem]">
-            Game Agent
-          </TabsTrigger>
+          {TABS.map((tab) => {
+            return (
+              <TabsTrigger value={tab.name} key={tab.name} className="w-[15rem]">
+                {tab.label}
+              </TabsTrigger>
+            );
+          })}
         </TabsList>
-        <TabsContent value="social">
-          <SocialAgentForm />
-        </TabsContent>
-        <TabsContent value="defi">
-          <DefiAgentForm />
-        </TabsContent>
-        <TabsContent value="companion">
-          <AICompanionForm />
-        </TabsContent>
-        <TabsContent value="game">
-          <GameAgentForm />
-        </TabsContent>
+        {TABS.map((tab) => {
+          return (
+            <TabsContent value={tab.name} key={tab.name}>
+              <div className="flex gap-40">
+                {tab.component}
+                <TerminalCard />
+              </div>
+            </TabsContent>
+          );
+        })}
       </Tabs>
     </div>
   );
