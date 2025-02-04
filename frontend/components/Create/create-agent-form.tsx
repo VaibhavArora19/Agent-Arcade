@@ -4,7 +4,9 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import DefiAgentForm from "./defi-agent-form";
 import { Button } from "../ui/button";
 import { IoMdArrowRoundBack } from "react-icons/io";
-import TerminalComponent from "./terminal-component";
+import SocialAgentForm from "./social-agent-form";
+import AICompanionForm from "./ai-companion-form";
+import GameAgentForm from "./game-agent-form";
 
 const CreateAgentForm = () => {
   return (
@@ -18,25 +20,31 @@ const CreateAgentForm = () => {
       </div>
       <Tabs defaultValue="social" className="mt-8">
         <TabsList>
-          <TabsTrigger value="social">Social Agent</TabsTrigger>
-          <TabsTrigger value="defi" className="w-[25%]">
+          <TabsTrigger value="social" className="w-[15rem]">
+            Social Agent
+          </TabsTrigger>
+          <TabsTrigger value="defi" className="w-[15rem]">
             Defi Agent
           </TabsTrigger>
-          <TabsTrigger value="companion" className="w-[25%]">
+          <TabsTrigger value="companion" className="w-[15rem]">
             AI companion
           </TabsTrigger>
-          <TabsTrigger value="game" className="w-[25%]">
+          <TabsTrigger value="game" className="w-[15rem]">
             Game Agent
           </TabsTrigger>
         </TabsList>
-        <TabsContent value="social">Make changes to your account here.</TabsContent>
-        <TabsContent value="defi">
-          <div className="flex gap-8">
-            <DefiAgentForm />
-          </div>
+        <TabsContent value="social">
+          <SocialAgentForm />
         </TabsContent>
-        <TabsContent value="companion">Change your password here.</TabsContent>
-        <TabsContent value="game">Change your password here.</TabsContent>
+        <TabsContent value="defi">
+          <DefiAgentForm />
+        </TabsContent>
+        <TabsContent value="companion">
+          <AICompanionForm />
+        </TabsContent>
+        <TabsContent value="game">
+          <GameAgentForm />
+        </TabsContent>
       </Tabs>
     </div>
   );
