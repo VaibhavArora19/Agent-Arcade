@@ -10,13 +10,20 @@ import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, For
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Textarea } from "../ui/textarea";
+import { useCreateAgent } from "@/hooks/server/useCreateAgent";
 
 const SocialAgentForm = () => {
+  const { mutateAsync } = useCreateAgent();
+
   const form = useForm<z.infer<typeof AgentSchema>>({
     resolver: zodResolver(AgentSchema),
   });
 
-  function onSubmit(values: z.infer<typeof AgentSchema>) {}
+  async function onSubmit(values: z.infer<typeof AgentSchema>) {
+    console.log("values are: ", values);
+
+    await mutateAsync({ ...values, agentType: "social" });
+  }
 
   return (
     <Form {...form}>
@@ -51,11 +58,11 @@ const SocialAgentForm = () => {
         />
         <FormField
           control={form.control}
-          name="SDK"
-          render={() => (
+          name="sdk"
+          render={({ field }) => (
             <FormItem>
               <FormLabel>SDK</FormLabel>
-              <Select>
+              <Select onValueChange={field.onChange} defaultValue={field.value}>
                 <FormControl>
                   <SelectTrigger>
                     <SelectValue placeholder="Select the SDK" />
@@ -74,11 +81,11 @@ const SocialAgentForm = () => {
         />
         <FormField
           control={form.control}
-          name="SDK"
-          render={() => (
+          name="chain"
+          render={({ field }) => (
             <FormItem>
               <FormLabel>Chain</FormLabel>
-              <Select>
+              <Select onValueChange={field.onChange} defaultValue={field.value}>
                 <FormControl>
                   <SelectTrigger>
                     <SelectValue placeholder="Select the Chain" />
@@ -109,7 +116,9 @@ const SocialAgentForm = () => {
             </FormItem>
           )}
         />
-        <Button type="submit">Submit</Button>
+        <Button type="submit" className="w-full text-sm">
+          Create Agent
+        </Button>
       </form>
     </Form>
   );

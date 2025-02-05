@@ -10,13 +10,18 @@ import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, For
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Textarea } from "../ui/textarea";
+import { useCreateAgent } from "@/hooks/server/useCreateAgent";
 
 const AICompanionForm = () => {
+  const { mutateAsync } = useCreateAgent();
+
   const form = useForm<z.infer<typeof AgentSchema>>({
     resolver: zodResolver(AgentSchema),
   });
 
-  function onSubmit(values: z.infer<typeof AgentSchema>) {}
+  async function onSubmit(values: z.infer<typeof AgentSchema>) {
+    await mutateAsync({ ...values, agentType: "ai-companion" });
+  }
 
   return (
     <Form {...form}>
@@ -51,11 +56,11 @@ const AICompanionForm = () => {
         />
         <FormField
           control={form.control}
-          name="SDK"
-          render={() => (
+          name="sdk"
+          render={({ field }) => (
             <FormItem>
               <FormLabel>SDK</FormLabel>
-              <Select>
+              <Select onValueChange={field.onChange} defaultValue={field.value}>
                 <FormControl>
                   <SelectTrigger>
                     <SelectValue placeholder="Select the SDK" />
@@ -74,11 +79,11 @@ const AICompanionForm = () => {
         />
         <FormField
           control={form.control}
-          name="SDK"
-          render={() => (
+          name="chain"
+          render={({ field }) => (
             <FormItem>
               <FormLabel>Chain</FormLabel>
-              <Select>
+              <Select onValueChange={field.onChange} defaultValue={field.value}>
                 <FormControl>
                   <SelectTrigger>
                     <SelectValue placeholder="Select the Chain" />
@@ -109,7 +114,9 @@ const AICompanionForm = () => {
             </FormItem>
           )}
         />
-        <Button type="submit">Submit</Button>
+        <Button type="submit" className="w-full text-sm">
+          Create Agent
+        </Button>
       </form>
     </Form>
   );

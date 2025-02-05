@@ -4,6 +4,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { AppKit } from "@/context/appkit";
 import Navbar from "@/components/(ui)/Navbar";
+import QueryProvider from "../context/queryProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -30,8 +31,10 @@ export default function RootLayout({
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased  m-auto`}>
         <ThemeProvider attribute="class" defaultTheme="dark">
           <AppKit>
-            <Navbar />
-            {children}
+            <QueryProvider>
+              <Navbar />
+              {children}
+            </QueryProvider>
           </AppKit>
         </ThemeProvider>
       </body>
