@@ -1,11 +1,11 @@
 import { Module } from '@nestjs/common';
 import { CommunicateService } from './communicate.service';
 import { CommunicateController } from './communicate.controller';
-import { AgentKitModule } from 'src/lib/agent-kit/agent-kit.module';
-import { WardenModule } from 'src/lib/warden/warden.module';
+import { CoinbaseAgentModule } from 'src/lib/coinbase-agent/coinbase-agent.module';
+import { WardenAgentModule } from 'src/lib/warden-agent/warden-agent.module';
 
 @Module({
-  imports: [AgentKitModule.register(), WardenModule.register()],
+  imports: [CoinbaseAgentModule.register(), WardenAgentModule.register()],
   controllers: [CommunicateController],
   providers: [CommunicateService],
 })

@@ -46,7 +46,7 @@ const CreateAgentForm = () => {
         <TabsList>
           {TABS.map((tab) => {
             return (
-              <TabsTrigger value={tab.name} key={tab.name} className="w-[15rem]">
+              <TabsTrigger value={tab.name} key={tab.name} className="w-[13.7rem]">
                 {tab.label}
               </TabsTrigger>
             );
@@ -55,9 +55,11 @@ const CreateAgentForm = () => {
         {TABS.map((tab) => {
           return (
             <TabsContent value={tab.name} key={tab.name}>
-              <div className="flex gap-40">
-                {tab.component}
-                <TerminalCard />
+              <div className="flex mt-8 w-[90%] gap-10">
+                <div className="w-[70%]">{tab.component}</div>
+                <div className="w-[30%] pt-4">
+                  <TerminalCard />
+                </div>
               </div>
             </TabsContent>
           );

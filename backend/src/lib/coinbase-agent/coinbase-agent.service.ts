@@ -19,7 +19,7 @@ import { createWalletClient, http } from 'viem';
 import { baseSepolia } from 'viem/chains';
 
 @Injectable()
-export class AgentKitService {
+export class CoinbaseAgentService {
   constructor(private configService: ConfigService) {}
   /**
    * Initialize the agent with CDP Agentkit

@@ -61,7 +61,7 @@ export function TerminalCard() {
   };
 
   return (
-    <Card className="bg-zinc-900 border-zinc-800 w-[600px]">
+    <Card className="bg-zinc-900 border-zinc-800 h-[33rem]">
       <div className="flex items-center gap-2 px-4 py-2 border-b border-zinc-800">
         <div className="flex gap-1.5">
           <Circle className="w-3 h-3 fill-red-500 text-red-500" />

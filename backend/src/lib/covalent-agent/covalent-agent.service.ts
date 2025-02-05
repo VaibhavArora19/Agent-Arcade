@@ -3,8 +3,8 @@ import { Injectable } from '@nestjs/common';
 
 //! this is incomplete
 @Injectable()
-export class CovalentService {
-  async initalizeAgent() {
+export class CovalentAgentService {
+  async initializeAgent() {
     const agent = new Agent({
       name: 'Reporting Agent',
       model: {
@@ -19,7 +19,7 @@ export class CovalentService {
   }
 
   async runCovalentAgent(userInput: string) {
-    const agent = await this.initalizeAgent();
+    const agent = await this.initializeAgent();
 
     const run = await agent.run();
   }

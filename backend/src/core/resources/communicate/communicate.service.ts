@@ -1,13 +1,13 @@
 import { Injectable } from '@nestjs/common';
-import { AgentKitService } from 'src/lib/agent-kit/agent-kit.service';
+import { CoinbaseAgentService } from 'src/lib/coinbase-agent/coinbase-agent.service';
 import { CommunicateDto } from './dto/communicate.dto';
-import { WardenService } from 'src/lib/warden/warden.service';
+import { WardenAgentService } from 'src/lib/warden-agent/warden-agent.service';
 
 @Injectable()
 export class CommunicateService {
   constructor(
-    private readonly agentKitService: AgentKitService,
-    private readonly wardenService: WardenService,
+    private readonly agentKitService: CoinbaseAgentService,
+    private readonly wardenService: WardenAgentService,
   ) {}
 
   async runCoinbaseAgent(communicateDto: CommunicateDto) {

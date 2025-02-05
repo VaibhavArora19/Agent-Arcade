@@ -7,7 +7,7 @@ import { ConfigService } from '@nestjs/config';
 import { HumanMessage } from '@langchain/core/messages';
 
 @Injectable()
-export class WardenService {
+export class WardenAgentService {
   constructor(private readonly configService: ConfigService) {}
 
   async initializeAgent() {
