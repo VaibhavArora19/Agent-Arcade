@@ -1,4 +1,4 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { CommunicateService } from './communicate.service';
 import { CommunicateDto } from './dto/communicate.dto';
 
@@ -6,20 +6,15 @@ import { CommunicateDto } from './dto/communicate.dto';
 export class CommunicateController {
   constructor(private readonly communicateService: CommunicateService) {}
 
-  @Post('coinbase')
-  async runCoinbaseAgent(@Body() communticateDto: CommunicateDto) {
-    const response =
-      await this.communicateService.runCoinbaseAgent(communticateDto);
-
-    return {
-      response,
-    };
-  }
-
-  @Post('warden')
-  async runWardenAgent(@Body() communticateDto: CommunicateDto) {
-    const response =
-      await this.communicateService.runWardenAgent(communticateDto);
+  @Post('/:agentName')
+  async communicate(
+    @Param('agentName') agentName: string,
+    @Body() communicateDto: CommunicateDto,
+  ) {
+    const response = await this.communicateService.comunicate(
+      agentName,
+      communicateDto,
+    );
 
     return {
       response,

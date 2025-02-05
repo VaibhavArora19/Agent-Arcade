@@ -6,6 +6,7 @@ import { CovalentAgentModule } from 'src/lib/covalent-agent/covalent-agent.modul
 import { WardenAgentModule } from 'src/lib/warden-agent/warden-agent.module';
 import { MongooseModule } from '@nestjs/mongoose';
 import { Agent, AgentSchema } from './agent.schema';
+import { CreateAgentRepository } from './create-agent.repository';
 
 @Module({
   imports: [
@@ -15,6 +16,7 @@ import { Agent, AgentSchema } from './agent.schema';
     WardenAgentModule.register(),
   ],
   controllers: [CreateAgentController],
-  providers: [CreateAgentService],
+  providers: [CreateAgentService, CreateAgentRepository],
+  exports: [CreateAgentService, CreateAgentRepository],
 })
 export class CreateAgentModule {}

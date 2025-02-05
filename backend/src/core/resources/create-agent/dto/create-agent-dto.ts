@@ -6,6 +6,13 @@ export enum SDK {
   COVALENT = 'covalent',
 }
 
+export enum TYPE {
+  SOCIAL = 'social',
+  DEFI = 'defi',
+  GAME = 'game',
+  AI_COMPANION = 'ai-companion',
+}
+
 export class CreateAgentDto {
   @IsString()
   @IsNotEmpty()
@@ -22,6 +29,10 @@ export class CreateAgentDto {
   @IsString()
   @IsNotEmpty()
   chain: string;
+
+  @IsString()
+  @IsNotEmpty()
+  agentType: TYPE;
 
   //!figure out how to add tasks
   @IsString()

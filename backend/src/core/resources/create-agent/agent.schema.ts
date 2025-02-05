@@ -1,6 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Schema as MongooseSchema } from 'mongoose';
-import { SDK } from './dto/create-agent-dto';
+import { SDK, TYPE } from './dto/create-agent-dto';
 
 @Schema({
   timestamps: true,
@@ -41,6 +41,13 @@ export class Agent {
     type: MongooseSchema.Types.Mixed,
   })
   agent: any;
+
+  @Prop({
+    type: String,
+    enum: TYPE,
+    required: true,
+  })
+  agentType: TYPE;
 
   @Prop({
     type: MongooseSchema.Types.Mixed,

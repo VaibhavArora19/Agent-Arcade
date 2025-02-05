@@ -12,4 +12,10 @@ export class CreateAgentRepository {
 
     return newAgent.save();
   }
+
+  async findByName(agentName: string) {
+    const agent = await this.agentModel.findOne({ agentName });
+
+    return agent;
+  }
 }
