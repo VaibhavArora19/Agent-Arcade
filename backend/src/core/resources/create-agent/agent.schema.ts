@@ -1,5 +1,4 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Schema as MongooseSchema } from 'mongoose';
 import { SDK, TYPE } from './dto/create-agent-dto';
 
 @Schema({
@@ -32,15 +31,10 @@ export class Agent {
   chain: string;
 
   @Prop({
-    type: String,
+    type: Array<String>,
     required: false,
   })
-  task: string;
-
-  @Prop({
-    type: MongooseSchema.Types.Mixed,
-  })
-  agent: any;
+  task: Array<string>;
 
   @Prop({
     type: String,
@@ -48,11 +42,6 @@ export class Agent {
     required: true,
   })
   agentType: TYPE;
-
-  @Prop({
-    type: MongooseSchema.Types.Mixed,
-  })
-  agentConfig: any;
 }
 
 export const AgentSchema = SchemaFactory.createForClass(Agent);

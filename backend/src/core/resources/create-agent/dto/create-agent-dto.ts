@@ -2,7 +2,6 @@ import { IsNotEmpty, IsString } from 'class-validator';
 
 export enum SDK {
   AGENT_KIT = 'agent-kit',
-  WARDEN = 'warden',
   COVALENT = 'covalent',
 }
 

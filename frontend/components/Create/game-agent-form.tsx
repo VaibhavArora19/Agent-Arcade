@@ -67,7 +67,6 @@ const GameAgentForm = () => {
                 </FormControl>
                 <SelectContent>
                   <SelectItem value="agent-kit">Coinbase Agent kit</SelectItem>
-                  <SelectItem value="warden">Warden Protocol</SelectItem>
                   <SelectItem value="covalent">Covalent</SelectItem>
                 </SelectContent>
               </Select>
