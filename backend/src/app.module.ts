@@ -5,6 +5,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { CommunicateModule } from './core/resources/communicate/communicate.module';
 import { CreateAgentModule } from './core/resources/create-agent/create-agent.module';
 import { MongooseModule } from '@nestjs/mongoose';
+import { ZeeModule } from './core/resources/zee/zee.module';
 
 @Module({
   imports: [
@@ -23,6 +24,7 @@ import { MongooseModule } from '@nestjs/mongoose';
     }),
     CommunicateModule,
     CreateAgentModule,
+    ZeeModule,
   ],
   controllers: [AppController],
   providers: [AppService],
