@@ -1,8 +1,11 @@
+"use client";
+
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import Image from "next/image";
 import { GoPeople } from "react-icons/go";
 import { Button } from "../ui/button";
 import { MdDeleteOutline } from "react-icons/md";
+import { useRouter } from "next/navigation";
 
 type TProps = {
   name: string;
@@ -11,6 +14,8 @@ type TProps = {
 };
 
 const AgentCard = (props: TProps) => {
+  const router = useRouter();
+
   return (
     <div className="w-[32rem]  ">
       <Card className="hover:border-gray-500">
@@ -37,7 +42,7 @@ const AgentCard = (props: TProps) => {
         </CardContent>
         <p className="bg-secondary p-1 text-sm rounded-2xl block w-[7.5rem] ml-6 text-center">{props.contractAddress}</p>
         <CardFooter className="mt-4 border-t-2 border-gray-900 pt-4 gap-4">
-          <Button variant={"outline"} className="w-[90%]">
+          <Button variant={"outline"} className="w-[90%]" onClick={() => router.push(`/chat/agent`)}>
             Chat
           </Button>
           <Button variant={"outline"}>

@@ -5,6 +5,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { AppKit } from "@/context/appkit";
 import Navbar from "@/components/(ui)/Navbar";
 import QueryProvider from "../context/queryProvider";
+import { TooltipProvider } from "@/components/ui/tooltip";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -32,8 +33,10 @@ export default function RootLayout({
         <ThemeProvider attribute="class" defaultTheme="dark">
           <AppKit>
             <QueryProvider>
-              <Navbar />
-              {children}
+              <TooltipProvider delayDuration={0}>
+                <Navbar />
+                {children}
+              </TooltipProvider>
             </QueryProvider>
           </AppKit>
         </ThemeProvider>
