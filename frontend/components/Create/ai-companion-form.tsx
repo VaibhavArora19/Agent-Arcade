@@ -69,6 +69,7 @@ const AICompanionForm = () => {
                 <SelectContent>
                   <SelectItem value="agent-kit">Coinbase Agent kit</SelectItem>
                   <SelectItem value="covalent">Covalent</SelectItem>
+                  <SelectItem value="eliza">Eliza OS</SelectItem>
                 </SelectContent>
               </Select>
               <FormDescription>Select the SDK you want to use to create agent(optional)</FormDescription>

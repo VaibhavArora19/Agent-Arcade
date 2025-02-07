@@ -2,7 +2,7 @@
 
 import { createAppKit } from "@reown/appkit/react";
 import { EthersAdapter } from "@reown/appkit-adapter-ethers";
-import { mainnet, arbitrum, base, optimism, zksync, mode, polygon } from "@reown/appkit/networks";
+import { flowTestnet, arbitrumNova } from "@reown/appkit/networks";
 import React from "react";
 
 // 1. Get projectId at https://cloud.reown.com
@@ -20,7 +20,7 @@ const metadata = {
 createAppKit({
   adapters: [new EthersAdapter()],
   metadata,
-  networks: [mainnet, arbitrum, base, optimism, zksync, mode, polygon],
+  networks: [arbitrumNova, flowTestnet],
   projectId,
   features: {
     analytics: true, // Optional - defaults to your Cloud configuration
