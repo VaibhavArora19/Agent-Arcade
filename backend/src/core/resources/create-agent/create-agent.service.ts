@@ -20,8 +20,6 @@ export class CreateAgentService {
     //!store the agent info in db
 
     const newAgent = await this.createAgentRepository.create({
-      ...createElizaAgentDto,
-    });
 
     const filePath = path.join(
       __dirname,
