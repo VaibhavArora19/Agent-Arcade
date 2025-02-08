@@ -1,1 +1,0 @@
-../deps/eliza/scripts/dev.sh

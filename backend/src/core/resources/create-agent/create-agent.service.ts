@@ -51,7 +51,7 @@ export class CreateAgentService {
 
     const filePath = path.join(
       __dirname,
-      `../../../elizaOnFlow/characters/${createElizaAgentDto.agentName}.json`,
+      `../../../../../elizaOnFlow/characters/${createElizaAgentDto.agentName}.json`,
     );
 
     fs.writeFile(filePath, JSON.stringify(jsonObject, null, 2), function (err) {
