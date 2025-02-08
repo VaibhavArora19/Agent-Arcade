@@ -4,6 +4,12 @@
   ],
   "modelProvider": "openai",
   "settings": {
+    "chains": {
+      "evm": [
+        "flowTestnet",
+        "arbitrumNova"
+      ]
+    },
     "voice": {
       "model": "en_US-ryan-low"
     }

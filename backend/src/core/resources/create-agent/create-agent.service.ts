@@ -89,7 +89,7 @@ export class CreateAgentService {
 
       const dockerFilePath = path.resolve(process.cwd(), '../');
 
-      const docker = new Docker({ socketPath: '//./pipe/docker_engine' });
+      const docker = new Docker();
 
       console.log('File path: ', dockerFilePath);
 
