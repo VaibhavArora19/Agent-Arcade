@@ -55,10 +55,10 @@ export class ElizaAgent {
   agentName: string;
 
   @Prop({
-    type: String,
+    type: Array<string>,
     required: true,
   })
-  bio: string;
+  bio: string[];
 
   @Prop({
     type: String,

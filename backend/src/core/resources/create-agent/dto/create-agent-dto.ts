@@ -44,9 +44,9 @@ export class CreateElizaAgentDto {
   @IsNotEmpty()
   agentName: string;
 
-  @IsString()
+  @IsArray()
   @IsNotEmpty()
-  bio: string;
+  bio: Array<string>;
 
   @IsString()
   @IsNotEmpty()

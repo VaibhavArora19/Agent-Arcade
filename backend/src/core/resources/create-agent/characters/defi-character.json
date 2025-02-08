@@ -1,5 +1,4 @@
 {
-  "name": "DeFi Dave",
   "clients": [""],
   "modelProvider": "openai",
   "settings": {
