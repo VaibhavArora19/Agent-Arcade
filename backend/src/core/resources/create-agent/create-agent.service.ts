@@ -1,12 +1,16 @@
 import { Injectable } from '@nestjs/common';
 import { CreateAgentDto, CreateElizaAgentDto } from './dto/create-agent-dto';
-import path from 'path';
+import * as path from 'path';
 import { CreateAgentRepository } from './create-agent.repository';
-import fs, { read } from 'fs';
+import * as fs from 'fs';
+import { CreateElizaAgentRepository } from './create-eliza-agent,repository';
 
 @Injectable()
 export class CreateAgentService {
-  constructor(private readonly createAgentRepository: CreateAgentRepository) {}
+  constructor(
+    private readonly createAgentRepository: CreateAgentRepository,
+    private readonly createElizaAgentRepository: CreateElizaAgentRepository,
+  ) {}
 
   async create(createAgentDto: CreateAgentDto) {
     const newAgent = await this.createAgentRepository.create({
@@ -18,28 +22,42 @@ export class CreateAgentService {
 
   async createFlowAgent(createElizaAgentDto: CreateElizaAgentDto) {
     //store the agent info in db
-    await this.createAgentRepository.create(createElizaAgentDto);
+    await this.createElizaAgentRepository.create(createElizaAgentDto);
 
     let readFile;
 
+    console.log('dirname', __dirname);
+
     if (createElizaAgentDto.type === 'game') {
       readFile = fs.readFileSync(
-        path.join(__dirname, './characters/game.json'),
+        path.join(
+          process.cwd(),
+          '/src/core/resources/create-agent/characters/game.json',
+        ),
         'utf-8',
       );
     } else if (createElizaAgentDto.type === 'social') {
       readFile = fs.readFileSync(
-        path.join(__dirname, './characters/social-character.json'),
+        path.join(
+          process.cwd(),
+          '/src/core/resources/create-agent/characters/social-character.json',
+        ),
         'utf-8',
       );
     } else if (createElizaAgentDto.type === 'ai-companion') {
       readFile = fs.readFileSync(
-        path.join(__dirname, './characters/ai-companion.json'),
+        path.join(
+          process.cwd(),
+          '/src/core/resources/create-agent/characters/ai-companion.json',
+        ),
         'utf-8',
       );
     } else {
       readFile = fs.readFileSync(
-        path.join(__dirname, './characters/defi-character.json'),
+        path.join(
+          process.cwd(),
+          '/src/core/resources/create-agent/characters/defi-character.json',
+        ),
         'utf-8',
       );
     }
@@ -50,8 +68,8 @@ export class CreateAgentService {
     jsonObject.bio = createElizaAgentDto.bio;
 
     const filePath = path.join(
-      __dirname,
-      `../../../../../elizaOnFlow/characters/${createElizaAgentDto.agentName}.json`,
+      process.cwd(),
+      `../elizaOnFlow/characters/${createElizaAgentDto.agentName}.json`,
     );
 
     fs.writeFile(filePath, JSON.stringify(jsonObject, null, 2), function (err) {
