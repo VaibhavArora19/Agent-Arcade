@@ -1,39 +1,10 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import { Terminal, Circle } from "lucide-react";
 import { Card } from "@/components/ui/card";
+import { Step } from "../Create/ai-companion-form";
 
-interface Step {
-  text: string;
-  status: "pending" | "loading" | "complete" | "error";
-}
-
-export function TerminalCard() {
-  const [steps, setSteps] = useState<Step[]>([
-    { text: "Initializing deployment...", status: "pending" },
-    { text: "Creating smart contract...", status: "pending" },
-    { text: "Deploying token to testnet...", status: "pending" },
-    { text: "Verifying contract on Etherscan...", status: "pending" },
-    { text: "Generating documentation...", status: "pending" },
-  ]);
-  const [currentStep, setCurrentStep] = useState(0);
-
-  useEffect(() => {
-    if (currentStep < steps.length) {
-      // Set current step to loading
-      setSteps((prev) => prev.map((step, i) => (i === currentStep ? { ...step, status: "loading" } : step)));
-
-      // Simulate process completion
-      const timer = setTimeout(() => {
-        setSteps((prev) => prev.map((step, i) => (i === currentStep ? { ...step, status: Math.random() > 0.1 ? "complete" : "error" } : step)));
-        setCurrentStep((prev) => prev + 1);
-      }, 2000);
-
-      return () => clearTimeout(timer);
-    }
-  }, [currentStep, steps.length]); // Added steps.length to dependencies
-
+export function TerminalCard({ steps, currentStep }: { steps: Step[]; currentStep: number }) {
   const getStatusColor = (status: Step["status"]) => {
     switch (status) {
       case "pending":

@@ -7,7 +7,6 @@ import { IoMdArrowRoundBack } from "react-icons/io";
 import SocialAgentForm from "./social-agent-form";
 import AICompanionForm from "./ai-companion-form";
 import GameAgentForm from "./game-agent-form";
-import { TerminalCard } from "../terminal/terminal-card";
 
 const TABS = [
   {
@@ -55,12 +54,7 @@ const CreateAgentForm = () => {
         {TABS.map((tab) => {
           return (
             <TabsContent value={tab.name} key={tab.name}>
-              <div className="flex mt-8 w-[90%] gap-10">
-                <div className="w-[70%]">{tab.component}</div>
-                <div className="w-[30%] pt-4">
-                  <TerminalCard />
-                </div>
-              </div>
+              {tab.component}
             </TabsContent>
           );
         })}
