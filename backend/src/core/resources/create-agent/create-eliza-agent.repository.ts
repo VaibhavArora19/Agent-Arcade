@@ -11,9 +11,21 @@ export class CreateElizaAgentRepository {
     private readonly elizaAgentModel: Model<ElizaAgent>,
   ) {}
 
-  async create(createElizaAgentDto: CreateElizaAgentDto) {
+  async create(
+    createElizaAgentDto: CreateElizaAgentDto & {
+      imageName: string;
+      containerName: string;
+      port: number;
+    },
+  ) {
     const newElizaAgent = new this.elizaAgentModel(createElizaAgentDto);
 
     return newElizaAgent.save();
+  }
+
+  async findLast() {
+    const agent = await this.elizaAgentModel.findOne().sort({ createdAt: -1 });
+
+    return agent;
   }
 }

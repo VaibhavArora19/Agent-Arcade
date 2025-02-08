@@ -24,7 +24,6 @@ export class CreateAgentService {
   async createFlowAgent(createElizaAgentDto: CreateElizaAgentDto) {
     try {
       //store the agent info in db
-      await this.createElizaAgentRepository.create(createElizaAgentDto);
 
       let readFile;
 
@@ -84,6 +83,10 @@ export class CreateAgentService {
         },
       );
 
+      const lastAgent = await this.createElizaAgentRepository.findLast();
+
+      const port = lastAgent.port ? lastAgent.port + 1 : 3000;
+
       const dockerFilePath = path.resolve(process.cwd(), '../');
 
       const docker = new Docker({ socketPath: '//./pipe/docker_engine' });
@@ -98,7 +101,7 @@ export class CreateAgentService {
           src: ['Dockerfile', 'elizaOnFlow'],
         },
         {
-          t: 'my-test-image-agentic',
+          t: `agentic-${createElizaAgentDto.agentName}`,
         },
       );
 
@@ -114,11 +117,11 @@ export class CreateAgentService {
 
       // Create a container with a custom command
       const container = await docker.createContainer({
-        Image: 'my-test-image-agentic',
+        Image: `agentic-${createElizaAgentDto.agentName}`,
         ExposedPorts: { '3000/tcp': {} },
         HostConfig: {
           PortBindings: {
-            '3000/tcp': [{ HostPort: '3000' }],
+            [`${port}/tcp`]: [{ HostPort: port.toString() }],
           },
         },
       });
@@ -127,6 +130,15 @@ export class CreateAgentService {
       await container.start();
 
       console.log('Container created...');
+
+      await this.createElizaAgentRepository.create({
+        ...createElizaAgentDto,
+        imageName: `agentic-${createElizaAgentDto.agentName}`,
+        containerName: container.id,
+        port: port,
+      });
+
+      console.log('Added new agent in DB...');
 
       return { status: HttpStatus.OK };
     } catch (error) {

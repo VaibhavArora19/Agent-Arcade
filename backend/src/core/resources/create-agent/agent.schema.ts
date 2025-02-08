@@ -67,10 +67,25 @@ export class ElizaAgent {
   type: string;
 
   @Prop({
-    knowledge: Array<string>,
+    type: Array<string>,
     required: true,
   })
   knowledge: [string];
+
+  @Prop({
+    type: String,
+  })
+  imageName: string;
+
+  @Prop({
+    type: String,
+  })
+  containerName: string;
+
+  @Prop({
+    type: Number,
+  })
+  port: number;
 }
 
 export const AgentSchema = SchemaFactory.createForClass(Agent);
