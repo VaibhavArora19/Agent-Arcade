@@ -1,6 +1,6 @@
 import { Body, Controller, Post } from '@nestjs/common';
 import { CreateAgentService } from './create-agent.service';
-import { CreateAgentDto } from './dto/create-agent-dto';
+import { CreateAgentDto, CreateElizaAgentDto } from './dto/create-agent-dto';
 
 @Controller('create-agent')
 export class CreateAgentController {
@@ -9,5 +9,10 @@ export class CreateAgentController {
   @Post()
   async create(@Body() createAgentDto: CreateAgentDto) {
     await this.createAgentService.create(createAgentDto);
+  }
+
+  @Post('flow')
+  async createFlowAgent(@Body() createElizaAgentDto: CreateElizaAgentDto) {
+    await this.createAgentService.createFlowAgent(createElizaAgentDto);
   }
 }

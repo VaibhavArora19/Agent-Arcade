@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsString } from 'class-validator';
+import { IsArray, IsNotEmpty, IsString } from 'class-validator';
 
 export enum SDK {
   AGENT_KIT = 'agent-kit',
@@ -37,4 +37,21 @@ export class CreateAgentDto {
   @IsString()
   @IsNotEmpty()
   task: string;
+}
+
+export class CreateElizaAgentDto {
+  @IsString()
+  @IsNotEmpty()
+  agentName: string;
+
+  @IsString()
+  @IsNotEmpty()
+  bio: string;
+
+  @IsString()
+  @IsNotEmpty()
+  type: TYPE;
+
+  @IsArray()
+  knowledge: string[];
 }

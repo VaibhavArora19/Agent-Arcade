@@ -31,7 +31,7 @@ export class Agent {
   chain: string;
 
   @Prop({
-    type: Array<String>,
+    type: Array<string>,
     required: false,
   })
   task: Array<string>;
@@ -44,4 +44,35 @@ export class Agent {
   agentType: TYPE;
 }
 
+@Schema({
+  timestamps: true,
+})
+export class ElizaAgent {
+  @Prop({
+    type: String,
+    required: true,
+  })
+  agentName: string;
+
+  @Prop({
+    type: String,
+    required: true,
+  })
+  bio: string;
+
+  @Prop({
+    type: String,
+    required: true,
+  })
+  type: string;
+
+  @Prop({
+    knowledge: Array<string>,
+    required: true,
+  })
+  knowledge: [string];
+}
+
 export const AgentSchema = SchemaFactory.createForClass(Agent);
+
+export const ElizaAgentSchema = SchemaFactory.createForClass(ElizaAgent);
