@@ -11,7 +11,7 @@ import {
   ElizaAgentSchema,
 } from './agent.schema';
 import { CreateAgentRepository } from './create-agent.repository';
-import { CreateElizaAgentRepository } from './create-eliza-agent,repository';
+import { CreateElizaAgentRepository } from './create-eliza-agent.repository';
 
 @Module({
   imports: [

@@ -13,6 +13,9 @@ export class CreateAgentController {
 
   @Post('flow')
   async createFlowAgent(@Body() createElizaAgentDto: CreateElizaAgentDto) {
-    await this.createAgentService.createFlowAgent(createElizaAgentDto);
+    const data =
+      await this.createAgentService.createFlowAgent(createElizaAgentDto);
+
+    return data;
   }
 }
