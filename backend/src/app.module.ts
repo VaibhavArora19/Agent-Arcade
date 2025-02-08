@@ -19,7 +19,7 @@ import { ZeeModule } from './core/resources/zee/zee.module';
       useFactory: (configService: ConfigService) => ({
         uri:
           configService.get<string>('MONGODB_URI') ??
-          'mongodb+srv://VaibhavArora:vaibhav1234@cluster0.csmza.mongodb.net/test',
+          'mongodb://localhost:27017/agentic-eth',
       }),
     }),
     CommunicateModule,
