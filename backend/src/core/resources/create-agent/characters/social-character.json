@@ -2,7 +2,11 @@
   "clients": ["farcaster", "twitter"],
   "modelProvider": "openai",
   "settings": {
-    "secrets": {},
+    "secrets": {
+      "chains": {
+        "evm": ["flowTestnet", "arbitrumNova"]
+      }
+    },
     "voice": {
       "model": "en_US-male-medium"
     }

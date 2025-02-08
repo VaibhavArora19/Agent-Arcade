@@ -2,6 +2,9 @@
   "clients": ["web", "mobile"],
   "gameProvider": "openai",
   "settings": {
+    "chains": {
+      "evm": ["flowTestnet", "arbitrumNova"]
+    },
     "difficulty": "medium",
     "graphics": "text-based",
     "audio": {
