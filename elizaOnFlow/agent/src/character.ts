@@ -6,7 +6,7 @@ import {
 import { basicFlowPlugin } from "@fixes-ai/common";
 
 const localDefaultCharacter: Character = {
-    modelProvider: ModelProviderName.DEEPSEEK,
+    modelProvider: ModelProviderName.OPENAI,
     plugins: [basicFlowPlugin],
 } as Character;
 

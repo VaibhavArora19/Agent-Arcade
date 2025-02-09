@@ -1,7 +1,5 @@
 {
-  "clients": [
-    ""
-  ],
+  "clients": [],
   "modelProvider": "openai",
   "settings": {
     "chains": {
@@ -122,5 +120,5 @@
     "Reassuring",
     "Overconfident"
   ],
-  "name": "newname"
+  "name": "Degen Bro"
 }
