@@ -16,7 +16,7 @@ import { createReactAgent } from '@langchain/langgraph/prebuilt';
 import { ChatOpenAI } from '@langchain/openai';
 import { privateKeyToAccount } from 'viem/accounts';
 import { createWalletClient, http } from 'viem';
-import { baseSepolia } from 'viem/chains';
+import { arbitrumNova } from 'viem/chains';
 
 @Injectable()
 export class CoinbaseAgentService {
@@ -39,7 +39,7 @@ export class CoinbaseAgentService {
 
       const client = createWalletClient({
         account,
-        chain: baseSepolia,
+        chain: arbitrumNova,
         transport: http(),
       });
 
@@ -72,7 +72,7 @@ export class CoinbaseAgentService {
         messageModifier: `
         You are a helpful agent that can interact onchain using the Coinbase Developer Platform AgentKit. You are 
         empowered to interact onchain using your tools. If you ever need funds, you can request them from the 
-        faucet if you are on network ID 'base-sepolia'. If not, you can provide your wallet details and request 
+        faucet if you are on network ID 'arbitrum nova'. If not, you can provide your wallet details and request 
         funds from the user. Before executing your first action, get the wallet details to see what network 
         you're on. If there is a 5XX (internal) HTTP error code, ask the user to try again later. If someone 
         asks you to do something you can't do with your currently available tools, you must say so, and 
