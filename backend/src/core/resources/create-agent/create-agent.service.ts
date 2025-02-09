@@ -87,7 +87,7 @@ export class CreateAgentService {
 
       const port = lastAgent.port ? lastAgent.port + 1 : 3000;
 
-      const dockerFilePath = path.resolve(process.cwd(), '../');
+      const dockerFilePath = path.resolve(process.cwd(), '../elizaOnFlow');
 
       const docker = new Docker();
 
@@ -98,18 +98,29 @@ export class CreateAgentService {
       const imageStream = await docker.buildImage(
         {
           context: dockerFilePath,
-          src: ['Dockerfile', 'elizaOnFlow'],
+          src: ['Dockerfile'],
         },
         {
           t: `agentic-${createElizaAgentDto.agentName}`,
-        },
+        }
       );
 
-      await new Promise((resolve, reject) => {
+      console.log('imagestream ', imageStream)
+
+            await new Promise((resolve, reject) => {
         docker.modem.followProgress(imageStream, (err, res) =>
-          err ? reject(err) : resolve(res),
-        );
+          err ? reject(err) : () => {console.log(res); resolve(res)},
+        onProgress);
       });
+
+      function onProgress(event) {
+        if (event.stream) {
+        console.log('ee', event.stream)
+        process.stdout.write(event.stream);  // Print logs to the console
+      }
+}
+
+
 
       console.log('Image built successfully!');
 
