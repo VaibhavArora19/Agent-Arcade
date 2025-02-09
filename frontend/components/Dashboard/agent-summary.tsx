@@ -5,13 +5,13 @@ import { GoPeople } from "react-icons/go";
 const DUMMY_DATA = [
   {
     title: "Total Characters",
-    value: 2,
+    value: 3,
     change: "+12%",
     icon: <GoPeople />,
   },
   {
     title: "Total Games",
-    value: 0,
+    value: 1,
     change: "+6%",
     icon: <GoPeople />,
   },

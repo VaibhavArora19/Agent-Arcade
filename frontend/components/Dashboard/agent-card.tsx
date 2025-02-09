@@ -20,7 +20,7 @@ const AgentCard = (props: TProps) => {
   const router = useRouter();
 
   return (
-    <div className="w-[32rem]  ">
+    <div className="w-[30rem] ">
       <Card className="hover:border-gray-500">
         <CardContent className="pt-4">
           <div className="flex gap-4">

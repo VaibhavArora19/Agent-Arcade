@@ -3,7 +3,7 @@ import AgentCard from "./agent-card";
 const DUMMY_DATA = [
   {
     name: "Chill girl",
-    description: "A talented ASMR artist dedicated to creating immersive audio experiences to help listeners relax, focus.",
+    description: "A talented ASMR artist dedicated to creating immersive audio experiences to help listener focus.",
     contractAddress: "0x3D6A...66A5",
     category: "Social",
     image: "/agent.png",
@@ -15,11 +15,18 @@ const DUMMY_DATA = [
     category: "DeFi",
     image: "/image2.jpg",
   },
+  {
+    name: "Beast Hunter",
+    description: "Master of clutch moments, risky plays, and unnecessary taunts.",
+    category: "Gaming",
+    image: "/game.jpg",
+    contractAddress: "0xac78...9d2b",
+  },
 ];
 
 const AgentCards = () => {
   return (
-    <div className="flex gap-4">
+    <div className="flex gap-4 flex-wrap">
       {DUMMY_DATA.map((data) => {
         return (
           <AgentCard

@@ -8,6 +8,7 @@ const fetcher = async ({ url, method, body, headers }: { url: string; method?: "
     headers: headers
       ? headers
       : {
+          Authorization: `Bearer ${process.env.NEXT_PUBLIC_OPENAI_KEY}`,
           Accept: "application/json",
           "Content-Type": "application/json",
         },

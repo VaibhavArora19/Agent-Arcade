@@ -12,14 +12,16 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Textarea } from "../ui/textarea";
 import { useCreateAgent } from "@/hooks/server/useCreateAgent";
 import { TerminalCard } from "../terminal/terminal-card";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { ethers } from "ethers";
+import { ABI, BYTECODE } from "@/constants";
 
 interface Step {
   text: string;
   status: "pending" | "loading" | "complete" | "error";
 }
 
-const SocialAgentForm = () => {
+const DefiAgentForm = () => {
   const { mutateAsync } = useCreateAgent();
   const [currentStep, setCurrentStep] = useState(0);
   const [steps, setSteps] = useState<Step[]>([
@@ -27,39 +29,44 @@ const SocialAgentForm = () => {
     { text: "Creating smart contract...", status: "pending" },
     { text: "Deploying token to testnet...", status: "pending" },
     { text: "Verifying contract on Etherscan...", status: "pending" },
-    { text: "Generating documentation...", status: "pending" },
     { text: "Creating agent...", status: "pending" },
     { text: "Containerizing agent..", status: "pending" },
   ]);
+  const [start, setStart] = useState(false);
+
+  useEffect(() => {
+    if (currentStep >= steps.length || steps[currentStep].text === "Creating agent..." || !start) {
+      return;
+    }
+
+    const timer = setTimeout(() => {
+      setSteps((prevSteps) => prevSteps.map((step, i) => (i === currentStep ? { ...step, status: "complete" } : step)));
+      setCurrentStep((prev) => prev + 1);
+    }, 2500);
+
+    return () => clearTimeout(timer);
+  }, [currentStep, steps, start]);
 
   const form = useForm<z.infer<typeof AgentSchema>>({
     resolver: zodResolver(AgentSchema),
   });
 
   async function onSubmit(values: z.infer<typeof AgentSchema>) {
-    console.log("values are: ", values);
-
-    await mutateAsync({ ...values, agentType: "social" });
+    await mutateAsync({ ...values, agentType: "defi" });
   }
-
   const createTokenHandler = async () => {
-    while (steps[currentStep].text !== "Deploying token to testnet...") {
-      // Set current step to loading
-      setSteps((prev) => prev.map((step, i) => (i === currentStep ? { ...step, status: "loading" } : step)));
+    //@ts-expect-error nothing bro don;t worry
+    const provider = new ethers.BrowserProvider(window.ethereum);
 
-      // Simulate process completion
-      const timer = setTimeout(() => {
-        setSteps((prev) => prev.map((step, i) => (i === currentStep ? { ...step, status: Math.random() > 0.1 ? "complete" : "error" } : step)));
-        setCurrentStep((prev) => prev + 1);
-      }, 2000);
+    const signer = await provider.getSigner();
 
-      return () => clearTimeout(timer);
-    }
+    const factory = new ethers.ContractFactory(ABI, BYTECODE, signer);
 
-    //!deploy contract here
+    const contract = await factory.deploy("tt", "tt", 18);
 
-    setSteps((prev) => prev.map((step, i) => (i === currentStep ? { ...step, status: "complete" } : step)));
+    setStart(true);
   };
+
   return (
     <div className="flex gap-10 min-w-full">
       <Form {...form}>
@@ -169,4 +176,4 @@ const SocialAgentForm = () => {
   );
 };
 
-export default SocialAgentForm;
+export default DefiAgentForm;

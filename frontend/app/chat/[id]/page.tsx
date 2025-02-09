@@ -2,7 +2,7 @@
 import Chat from "@/components/chat";
 
 const Page = () => {
-  return <Chat agentId={"e0e10e6f-ff2b-0d4c-8011-1fc1eee7cb32"} />;
+  return <Chat agentId={"1a8668b1-b085-0f03-83f8-48487892c458"} />;
 };
 
 export default Page;
