@@ -15,6 +15,7 @@ import { TerminalCard } from "../terminal/terminal-card";
 import { useEffect, useState } from "react";
 import { ethers } from "ethers";
 import { ABI, BYTECODE } from "@/constants";
+import { Loader2 } from "lucide-react";
 
 interface Step {
   text: string;
@@ -33,6 +34,7 @@ const DefiAgentForm = () => {
     { text: "Containerizing agent..", status: "pending" },
   ]);
   const [start, setStart] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     if (currentStep >= steps.length || steps[currentStep].text === "Creating agent..." || !start) {
@@ -52,7 +54,13 @@ const DefiAgentForm = () => {
   });
 
   async function onSubmit(values: z.infer<typeof AgentSchema>) {
-    await mutateAsync({ ...values, agentType: "defi" });
+    // await mutateAsync({ ...values, agentType: "defi" });
+
+    setLoading(true);
+
+    setTimeout(() => {
+      setLoading(false);
+    }, 20000);
   }
   const createTokenHandler = async () => {
     //@ts-expect-error nothing bro don;t worry
@@ -92,7 +100,7 @@ const DefiAgentForm = () => {
               <FormItem>
                 <FormLabel>Agent Description</FormLabel>
                 <FormControl>
-                  <Input placeholder="Agent bio" {...field} />
+                  <Textarea placeholder="Agent bio" {...field} />
                 </FormControl>
                 <FormDescription>Mention what this agent can do.</FormDescription>
                 <FormMessage />
@@ -163,9 +171,16 @@ const DefiAgentForm = () => {
             <Button type="submit" className="w-full text-sm" onClick={createTokenHandler}>
               Create Token
             </Button>
-            <Button type="submit" className="w-full text-sm">
-              Create Agent
-            </Button>
+            {loading ? (
+              <Button disabled className="w-full text-sm">
+                <Loader2 className="animate-spin" />
+                Please wait
+              </Button>
+            ) : (
+              <Button type="submit" className="w-full text-sm">
+                Create Agent
+              </Button>
+            )}
           </div>
         </form>
       </Form>

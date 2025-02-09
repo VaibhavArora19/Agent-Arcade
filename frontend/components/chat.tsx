@@ -168,8 +168,8 @@ export default function Page({ agentId }: { agentId: UUID }) {
               >
                 <ChatBubble variant={variant} className="flex flex-row items-center gap-2">
                   {message?.user !== "user" ? (
-                    <Avatar className="size-8 p-1 border rounded-full select-none">
-                      <AvatarImage src="/elizaos-icon.png" />
+                    <Avatar className="size-10 p-1 border rounded-full select-none">
+                      <AvatarImage src="/eliza.jpg" />
                     </Avatar>
                   ) : null}
                   <div className="flex flex-col">

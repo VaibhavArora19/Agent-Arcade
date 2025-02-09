@@ -22,6 +22,13 @@ const DUMMY_DATA = [
     image: "/game.jpg",
     contractAddress: "0xac78...9d2b",
   },
+  {
+    name: "Degen bro",
+    description: "Started DeFi trading with a ‘send it’ philosophy—research optional.",
+    category: "Gaming",
+    image: "/degen.jpg",
+    contractAddress: "0x34c8...baf7",
+  },
 ];
 
 const AgentCards = () => {

@@ -79,6 +79,7 @@ export const apiClient = {
         "Content-Type": "application/json",
         Accept: "audio/mpeg",
         "Transfer-Encoding": "chunked",
+        // Authorization: `Bearer ${process.env.NEXT_PUBLIC_OPENAI_KEY}`,
       },
     }),
   whisper: async (agentId: string, audioBlob: Blob) => {
