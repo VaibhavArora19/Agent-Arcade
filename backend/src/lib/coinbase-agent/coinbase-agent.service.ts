@@ -16,7 +16,7 @@ import { createReactAgent } from '@langchain/langgraph/prebuilt';
 import { ChatOpenAI } from '@langchain/openai';
 import { privateKeyToAccount } from 'viem/accounts';
 import { createWalletClient, http } from 'viem';
-import { arbitrumNova } from 'viem/chains';
+import { arbitrum } from 'viem/chains';
 
 @Injectable()
 export class CoinbaseAgentService {
@@ -39,7 +39,7 @@ export class CoinbaseAgentService {
 
       const client = createWalletClient({
         account,
-        chain: arbitrumNova,
+        chain: arbitrum,
         transport: http(),
       });
 
