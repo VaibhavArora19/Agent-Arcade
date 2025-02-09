@@ -6,11 +6,14 @@ import { GoPeople } from "react-icons/go";
 import { Button } from "../ui/button";
 import { MdDeleteOutline } from "react-icons/md";
 import { useRouter } from "next/navigation";
+import { MdOutlineCategory } from "react-icons/md";
 
 type TProps = {
   name: string;
   description: string;
   contractAddress: string;
+  category: string;
+  image: string;
 };
 
 const AgentCard = (props: TProps) => {
@@ -22,7 +25,7 @@ const AgentCard = (props: TProps) => {
         <CardContent className="pt-4">
           <div className="flex gap-4">
             <div className="flex items-center">
-              <Image src="/agent.png" width={70} height={10} alt="Agent" className="rounded-full h-[70px]" />
+              <Image src={props.image} width={70} height={10} alt="Agent" className="rounded-full h-[70px]" />
             </div>
             <div className="p-2 w-[80%]">
               <h1 className="text-xl font-semibold">{props.name}</h1>
@@ -33,8 +36,8 @@ const AgentCard = (props: TProps) => {
                   <p className="text-sm">412</p>
                 </span>
                 <span className="flex gap-2">
-                  <GoPeople />
-                  <p className="text-sm">412</p>
+                  <MdOutlineCategory />
+                  <p className="text-sm">{props.category}</p>
                 </span>
               </div>
             </div>

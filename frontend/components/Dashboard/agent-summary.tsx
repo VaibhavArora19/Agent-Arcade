@@ -11,6 +11,18 @@ const DUMMY_DATA = [
   },
   {
     title: "Total Games",
+    value: 0,
+    change: "+6%",
+    icon: <GoPeople />,
+  },
+  {
+    title: "Total Defi",
+    value: 1,
+    change: "+6%",
+    icon: <GoPeople />,
+  },
+  {
+    title: "Total Social",
     value: 1,
     change: "+6%",
     icon: <GoPeople />,

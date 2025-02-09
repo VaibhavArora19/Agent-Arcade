@@ -7,6 +7,7 @@ import { IoMdArrowRoundBack } from "react-icons/io";
 import SocialAgentForm from "./social-agent-form";
 import AICompanionForm from "./ai-companion-form";
 import GameAgentForm from "./game-agent-form";
+import { useRouter } from "next/navigation";
 
 const TABS = [
   {
@@ -32,10 +33,12 @@ const TABS = [
 ];
 
 const CreateAgentForm = () => {
+  const router = useRouter();
+
   return (
     <div className="pl-20">
       <div className="flex justify-between">
-        <Button variant={"outline"}>
+        <Button variant={"outline"} onClick={() => router.push("/")}>
           <IoMdArrowRoundBack />
           Back to dashboard
         </Button>
